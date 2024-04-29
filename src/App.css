@@ -1,0 +1,320 @@
+.App{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 1000px;
+    height: 780px;
+    /* border: 1px solid #000; */
+    gap: 20px;
+    padding: 10px;
+}
+
+.item{
+   position: relative;
+   text-align: center;
+   box-shadow: 1px 1px 5px #0000003a;
+   border-radius:5px;
+   -webkit-border-radius:5px;
+   -moz-border-radius:5px;
+   -ms-border-radius:5px;
+   -o-border-radius:5px;
+   cursor: pointer;
+}
+.item:hover .img-color-hover{
+    opacity: 1;
+}
+
+.img-color-hover{
+    top:0px;
+    position: absolute;
+    width: 100%;
+    height: 180px;
+    background-color: #0000007f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    opacity: 0;
+    transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+}
+.img{
+    position: absolute;
+    width: 100%;
+    height: 180px;
+}
+img{
+    width: 100%;
+    height: 100%; 
+}
+.text{
+    position: absolute;
+    bottom: 0px;
+    width: auto;
+    height: 200px;
+    text-align: left;
+    padding: 0px 0px 0px 30px;
+}
+.text .line-1 {
+    width: auto;
+    height: 30px;
+    /* border: 1px solid #000; */
+    display: flex;
+    align-items: end;
+    justify-content: left;
+    gap: 5px;
+}
+.text .line-1 .dot{
+    width: 15px;
+    height: 15px;
+    background: orange;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+#dot-change{
+    background: #00BCD2;
+}
+
+.text p{
+    font-size: 12px;
+    padding: 0px 25px 0px 0px;
+    color: gray;
+}
+
+.line-2{
+    width: auto;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid #000; */
+}
+
+.overflow-card{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: #0000003e;
+    top:0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* display: none; */
+}
+
+.card{
+    width: 600px;
+    height: 550px;
+    /*border: 1px solid #fff;
+    */background-color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+.cross-icon{
+    width: auto;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 10px;
+    color: gray;
+    cursor: pointer;
+}
+.img-card{
+    width: 600px;
+    height: 300px;
+    /* border: 1px solid  #fff; */
+}
+
+.card-text{
+    width: auto;
+    height: 200px;
+    border: 1px solid #fff;
+    padding: 0px 20px 0px 30px;
+    font-size: 14px;
+}
+
+.card-img-text{
+    width: auto;
+    height: 50px;
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.card p{
+    color: gray;
+}
+
+
+@media only screen and (min-width:300px) and (max-width:500px) {
+
+    .overflow-card{
+        height: 105vh;
+    }
+
+    .App{
+        height: 100%;
+    }
+
+    .container{
+        grid-template-columns: none;
+        grid-template-rows: auto;
+        overflow: scroll;
+        /* padding-top:50px; */
+    }
+
+    .text{
+        height: 220px;
+        padding: 0px 0px 0px 20px;
+    }
+
+    .item{
+        width: auto;
+        height: 400px;
+    }
+    .item p{
+        font-size: 11px;
+    }
+
+    .card{
+        width: 350px;
+        height: 400px;
+        overflow: hidden;
+    }
+
+    .img-card{
+        width: 350px;
+        height: 200px;
+    }
+    .img-card img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .card-text{
+        height: 150px;
+    }
+    .card-text p{
+        font-size: 11px;
+    }
+    .card-text h2{
+        font-size: 15px;
+    }
+
+    .avatar{
+        width: 28px;
+        height: 28px;
+    }   
+}
+
+@media only screen and (min-width:1114px) and (max-width:1114px) {
+
+    .container{
+        width: 800px;
+        height: 600px;
+    }
+
+    .overflow-card{
+        position: fixed;
+    }
+
+    .item{
+        width: auto;
+        height: 300px;
+    }
+
+    .img{
+        height: 150px;
+    }
+    .img-color-hover{
+        height: 150px;
+    }
+
+    .item p{
+        font-size: 10px;
+    }
+    .item h3{
+        font-size: 15px;
+    }
+
+    .text{
+        height: 160px;
+    }
+}
+
+@media only screen and (min-width:1280px) and (max-width:1290px) {
+
+    .container{
+        width: 900px;
+        height: 650px;
+    }
+
+    .overflow-card{
+        position: fixed;
+    }
+
+    .item{
+        width: auto;
+        height: 320px;
+    }
+
+    .img{
+        height: 160px;
+    }
+    .img-color-hover{
+        height: 160px;
+    }
+
+    .item p{
+        font-size: 10px;
+    }
+    .item h3{
+        font-size: 15px;
+    }
+
+    .text{
+        height: 160px;
+    }
+    
+}
+
