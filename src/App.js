@@ -1,25 +1,62 @@
 import React,{useEffect, useState} from 'react';
 import './App.css';
+import axios from 'axios';
 
 function App() {
-  
-  const [status, setStatus] = useState(false);
 
-  let [data,setData] = useState([])
+  const [data, setData] = useState([]);
+  const [selectedData, setSelectedData] = useState(null);
+  const [status, setStatus] = useState(true);
+
   useEffect(() => {
-    fetch("https://my-json-server.typicode.com/Codeinwp/front-end-internship-api/posts").then((result) => {
-      result.json().then((resp) =>{
-        setData(resp);
-      })
-    })
-  },[])
+    const fetchData = async () => {
+      const response = await axios.get('https://my-json-server.typicode.com/Codeinwp/front-end-internship-api/posts');
+      setData(response.data);
+      console.log(response)
+    };
+    fetchData();
+  }, []);
+
+  const handleShowDetails = (item) => {
+    setSelectedData(item);
+    setStatus(!status);
+  };
+
+  // let [data,setData] = useState([])
+  // useEffect(() => {
+  //   fetch("https://my-json-server.typicode.com/Codeinwp/front-end-internship-api/posts")
+  //   .then((result) => {
+  //     result.json()
+  //   .then((resp) =>{
+  //       setData(resp);
+  //       console.log(resp)
+  //     })
+  //   })
+  // },[])
+
   return (
     <div className="App">
+
+      {/* <ul>
+        {data.map((item) => (
+          <li key={item.id}>
+            {item.title}
+            <button onClick={() => handleShowDetails(item)}>Show Details</button>
+          </li>
+        ))}
+      </ul>
+
+      {selectedData && (
+        <div>
+          <h2>{selectedData.title}</h2>
+        </div>
+      )} */}
+
       <div className="container">
       {
         data.map((item) => (
           <>
-            <div className="item" onClick={()=>setStatus(true)}>
+            <div className="item" onClick={() => handleShowDetails(item)}>
               <div className="img">
                 <img src={item.thumbnail.small} />
                 <div className='img-color-hover'>
@@ -39,31 +76,35 @@ function App() {
                 </div>
               </div>
             </div>
-          
-      
-            {
-                status?  <div className='overflow-card'>
-                <div className='card'>
-                    <div className='cross-icon'>
-                    <span class="material-symbols-outlined" onClick={()=>setStatus(false)}>close</span>
+
+              { status ?
+                selectedData &&  
+                (
+                  <div className='overflow-card'>
+                    <div className='card'>
+                        <div className='cross-icon'>
+                        <span class="material-symbols-outlined" onClick={() => handleShowDetails(item)}>close</span>
+                        </div>
+                        <div className='img-card'><img src={selectedData.thumbnail.small} /></div>
+                        <div className='card-text'>
+                        <h2>{selectedData.title}</h2>
+                        <p>{selectedData.content}</p>
+                        <div className='card-img-text'>
+                          <div className='avatar'><img src={selectedData.avatar}/></div>
+                          <p>{selectedData.author.name} - {selectedData.author.role}</p>
+                        </div>           
+                        </div>
                     </div>
-                    <div className='img-card'><img src={item.thumbnail.large} /></div>
-                    <div className='card-text'>
-                    <h2>{item.title}</h2>
-                    <p>{item.content}</p>
-                    <div className='card-img-text'>
-                      <div className='avatar'><img src={item.author.avatar}/></div>
-                      <p>{item.author.name} - {item.author.role}</p>
-                    </div>           
-                    </div>
-                </div>
-            </div> : null
-            } 
-        
+                  </div>
+                )
+             : null }  
           </>
         ))
       }
       </div>
+
+
+
     </div>
   );
 }
